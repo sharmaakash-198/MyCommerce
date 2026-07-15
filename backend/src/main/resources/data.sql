@@ -1,4 +1,4 @@
-INSERT INTO product (id, available, brand, category, desc, namee, price, quantity, release_date) VALUES
+INSERT INTO product (id, available, brand, category, desc, name, price, quantity, release_date) VALUES
 (1, true, 'Samsung', 'Electronics', '5G Android smartphone', 'Galaxy S25', 79999.00, 45, '2025-02-15 10:30:00'),
 (2, true, 'Apple', 'Electronics', 'Latest wireless earbuds', 'AirPods Pro 3', 24999.00, 80, '2025-03-10 09:15:00'),
 (3, false, 'Nike', 'Footwear', 'Running shoes for men', 'Air Zoom Pegasus', 8999.00, 0, '2024-11-20 14:00:00'),
