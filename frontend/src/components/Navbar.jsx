@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Home from "./Home"
-import axios from "axios";
+import { useEffect, useState } from "react";
 
-const Navbar = ({ onSelectCategory, onSearch }) => {
+const Navbar = ({ onSelectCategory }) => {
   const getInitialTheme = () => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme ? storedTheme : "light-theme";
-  }; 
+  };
 
   const [theme, setTheme] = useState(getInitialTheme());
-  
 
-  
   const toggleTheme = () => {
     const newTheme = theme === "dark-theme" ? "light-theme" : "dark-theme";
     setTheme(newTheme);
@@ -22,7 +18,6 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
     document.body.className = theme;
   }, [theme]);
 
-  
   return (
     <>
       <header>
@@ -57,8 +52,7 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                     Add Product
                   </a>
                 </li>
-
-                {/* < className="nav-item dropdown"> */}
+                <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
                     href="/"
@@ -68,10 +62,31 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                   >
                     Categories
                   </a>
-
-                
-
-                <li className="nav-item"></li>
+                  <ul className="dropdown-menu">
+                    {["Laptop", "Headphone", "Mobile", "Electronics", "Toys", "Fashion"].map(
+                      (category) => (
+                        <li key={category}>
+                          <button
+                            className="dropdown-item"
+                            type="button"
+                            onClick={() => onSelectCategory?.(category)}
+                          >
+                            {category}
+                          </button>
+                        </li>
+                      )
+                    )}
+                    <li>
+                      <button
+                        className="dropdown-item"
+                        type="button"
+                        onClick={() => onSelectCategory?.("")}
+                      >
+                        All Products
+                      </button>
+                    </li>
+                  </ul>
+                </li>
               </ul>
               <button className="theme-btn" onClick={() => toggleTheme()}>
                 {theme === "dark-theme" ? (
@@ -89,14 +104,12 @@ const Navbar = ({ onSelectCategory, onSearch }) => {
                     Cart
                   </i>
                 </a>
-              
                 <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
-                  aria-label="Search"                
+                  aria-label="Search"
                 />
-                <div />
               </div>
             </div>
           </div>
